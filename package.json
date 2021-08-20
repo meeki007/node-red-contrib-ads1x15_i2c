@@ -30,7 +30,7 @@
     "author": "David 'Meeki007' Burrows",
     "license": "Apache-2.0",
     "bugs": {
-      "url": "https://github.com/meeki007/node-red-contrib-anolog-to-digital-converter-raspberry-pi/issues"
+      "url": "https://github.com/meeki007/node-red-contrib-ads1x15-raspi/issues"
     },
-    "homepage": "https://github.com/meeki007/node-red-contrib-anolog-to-digital-converter-raspberry-pi#readme"
+    "homepage": "https://github.com/meeki007/node-red-contrib-ads1x15-raspi#readme"
 }
