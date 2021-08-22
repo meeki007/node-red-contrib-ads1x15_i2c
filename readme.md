@@ -5,9 +5,13 @@ node-red-contrib-ads1x15_i2c
 <a href="http://nodered.org" target="_new">Node-RED</a> A node-red node providing access to a ADS1x15 I2C analog to digital converter.
 
 <a href="https://github.com/meeki007/node-red-contrib-ads1x15_i2c" target="_blank">ads1x15_i2c Documentation</a>
+
 <a href="https://www.best-microcontroller-projects.com/ads1115.html" target="_blank">Guide for the ADS</a>
+
 <a href="https://github.com/fivdi/i2c-bus/blob/HEAD/doc/raspberry-pi-i2c.md" target="_blank">Configuring I2C on the Raspberry Pi</a>
+
 <a href="https://github.com/fivdi/i2c-bus/blob/HEAD/doc/raspberry-pi-software-i2c.md" target="_blank">Configuring Software I2C on the Raspberry Pi</a>
+
 This Node should work for any working i2c device on non raspberry pi based systems!
 
 ---
