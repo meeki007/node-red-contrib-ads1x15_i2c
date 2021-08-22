@@ -13,7 +13,7 @@ node-red-contrib-ads1x15_i2c
   * [Property](#Property)
   * [Chipset](#Chipset)
   * [i2c_Address](#i2c_Address)
-  * [Channel](#Channel)
+  * [Inputs](#Inputs)
   * [Samples](#Round_Output)
   * [Gain](#Gain)
 * [Bugs / Feature request](#bugs--feature-request)
@@ -95,6 +95,12 @@ Thanks to [Kevin Felix D Rodriguez Perez AKA felixdrp](https://github.com/felixd
 
 ## release notes ##
 0.0.0 = (majorchange) . (new_feature) . (bugfix-simple_mod)
+
+version 0.0.12
+<br>
+Update Documentation
+<br>
+<br>
 
 version 0.0.11
 <br>
