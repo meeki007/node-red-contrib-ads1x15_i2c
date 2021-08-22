@@ -1,4 +1,4 @@
-<script type="text/x-red" data-template-name="ads1x15-raspi">
+<script type="text/x-red" data-template-name="ads1x15_i2c">
 
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
@@ -11,124 +11,154 @@
     </div>
 
     <div class="form-row">
+        <label for="node-input-i2c_device_number"><i class="fa fa-cog"></i> /dev/i2c-?</label>
+        <input type="text" id="node-input-i2c_device_number" style="width: 30%" placeholder="1">
+    </div>
+
+    <div class="form-row">
         <label for="node-input-chip"><i class="fa fa-microchip"></i> Chipset</label>
         <select id="node-input-chip">
-            <option value="IC_ADS1015" >ads1015</option>
-            <option value="IC_ADS1115" >ads1115</option>
+            <option value="0x00">ads1015</option>
+            <option value="0x01">ads1115</option>
         </select>
     </div>
 
     <div class="form-row">
         <label for="node-input-i2c_address"><i class="fa fa-cog"></i> i2c Address</label>
         <select id="node-input-i2c_address">
-            <option value="ADDRESS_0x48">0x48</option>
-            <option value="ADDRESS_0x49">0x49</option>
-            <option value="ADDRESS_0x4A">0x4A</option>
-            <option value="ADDRESS_0x4B">0x4B</option>
+            <option value="0x48">0x48</option>
+            <option value="0x49">0x49</option>
+            <option value="0x4A">0x4A</option>
+            <option value="0x4B">0x4B</option>
         </select>
     </div>
 
     <div class="form-row">
-        <label for="node-input-channel"><i class="fa fa-cog"></i> Channel</label>
-        <select id="node-input-channel">
-          <option value="CHANNEL_0">A0-GND</option>
-          <option value="CHANNEL_1">A1-GND</option>
-          <option value="CHANNEL_2">A2-GND</option>
-          <option value="CHANNEL_3">A3-GND</option>
-          <option value="DIFF_0_1">A0-A1</option>
-          <option value="DIFF_0_3">A0-A3</option>
-          <option value="DIFF_1_3">A1-A3</option>
-          <option value="DIFF_2_3">A2-A3</option>
+        <label for="node-input-inputsForChannel"><i class="fa fa-cog"></i> Inputs</label>
+        <select id="node-input-inputsForChannel">
+          <option value="singleEnded">Single Ended</option>
+          <option value="differential">Differential</option>
         </select>
+    </div>
+    <div class="form-row node-type-singleEndedChannelSelections">
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>Channel 0</label>
+        &emsp;<input type="checkbox" id="node-input-singleEndedChannel0" style="display:inline-block; width:20px; vertical-align:baseline;">
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>Channel 1</label>
+        &emsp;<input type="checkbox" id="node-input-singleEndedChannel1" style="display:inline-block; width:20px; vertical-align:baseline;">
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>Channel 2</label>
+        &emsp;<input type="checkbox" id="node-input-singleEndedChannel2" style="display:inline-block; width:20px; vertical-align:baseline;">
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>Channel 3</label>
+        &emsp;<input type="checkbox" id="node-input-singleEndedChannel3" style="display:inline-block; width:20px; vertical-align:baseline;">
+    </div>
+    <div class="form-row node-type-differentialSelections">
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>Channel 0 & 1</label>
+        &emsp;<input type="checkbox" id="node-input-differentialChannel0_1" style="display:inline-block; width:20px; vertical-align:baseline;">
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>Channel 0 & 3</label>
+        &emsp;<input type="checkbox" id="node-input-differentialChannel0_3" style="display:inline-block; width:20px; vertical-align:baseline;">
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>Channel 1 & 3</label>
+        &emsp;<input type="checkbox" id="node-input-differentialChannel1_3" style="display:inline-block; width:20px; vertical-align:baseline;">
+        <br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>Channel 2 & 3</label>
+        &emsp;<input type="checkbox" id="node-input-differentialChannel2_3" style="display:inline-block; width:20px; vertical-align:baseline;">
     </div>
 
     <div class="form-row node-type-IC_ADS1015_selections">
         <label><i class="fa fa-cog"></i> Samples/sec</label>
         <select id="node-input-samplesPerSecond0">
-            <option value="SPS_128">128</option>
-            <option value="SPS_250">250</option>
-            <option value="SPS_490">490</option>
-            <option value="SPS_920">920</option>
-            <option value="SPS_1600">1600</option>
-            <option value="SPS_2400">2400</option>
-            <option value="SPS_3300">3300</option>
+            <option value="128">128</option>
+            <option value="250">250</option>
+            <option value="490">490</option>
+            <option value="920">920</option>
+            <option value="1600">1600</option>
+            <option value="2400">2400</option>
+            <option value="3300">3300</option>
         </select>
     </div>
     <div class="form-row node-type-IC_ADS1115_selections">
         <label><i class="fa fa-cog"></i> Samples/sec</label>
         <select id="node-input-samplesPerSecond1">
-            <option value="SPS_8">8</option>
-            <option value="SPS_16">16</option>
-            <option value="SPS_32">32</option>
-            <option value="SPS_64">64</option>
-            <option value="SPS_128">128</option>
-            <option value="SPS_250">250</option>
-            <option value="SPS_475">475</option>
-            <option value="SPS_860">860</option>
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="32">32</option>
+            <option value="64">64</option>
+            <option value="128">128</option>
+            <option value="250">250</option>
+            <option value="475">475</option>
+            <option value="860">860</option>
         </select>
     </div>
     <div class="form-row">
         <label for="node-input-progGainAmp"><i class="fa fa-cog"></i> Gain</label>
         <select id="node-input-progGainAmp">
-            <option value="PGA_6_144V">6.144v (+/-)</option>
-            <option value="PGA_4_096V">4.096v (+/-)</option>
-            <option value="PGA_2_048V">2.048v (+/-)</option>
-            <option value="PGA_1_024V">1.024v (+/-)</option>
-            <option value="PGA_0_512V">0.512v (+/-)</option>
-            <option value="PGA_0_256V">0.256v (+/-)</option>
+            <option value="6144">6.144v (+/-)</option>
+            <option value="4096">4.096v (+/-)</option>
+            <option value="2048">2.048v (+/-)</option>
+            <option value="1024">1.024v (+/-)</option>
+            <option value="512">0.512v (+/-)</option>
+            <option value="256">0.256v (+/-)</option>
         </select>
     </div>
 
 </script>
 
-<script type="text/x-red" data-help-name="ads1x15-raspi">
-    <p>A node-red node providing access to a ADS1x15 I2C analog to digital converter using a raspberry pi.</p>
-    <p>Guide for the ADS </p>
-    <p>https://www.best-microcontroller-projects.com/ads1115.html </p>
+<script type="text/x-red" data-help-name="ads1x15_i2c">
+    <p>A node-red node providing access to a ADS1x15 I2C analog to digital converter.</p>
+    <p><a href="https://github.com/meeki007/node-red-contrib-ads1x15_i2c" target="_blank">ads1x15_i2c Documentation</a></p>
+    <p><a href="https://www.best-microcontroller-projects.com/ads1115.html" target="_blank">Guide for the ADS</a></p>
+    <p><a href="https://github.com/fivdi/i2c-bus/blob/HEAD/doc/raspberry-pi-i2c.md" target="_blank">Configuring I2C on the Raspberry Pi</a></p>
+    <p><a href="https://github.com/fivdi/i2c-bus/blob/HEAD/doc/raspberry-pi-software-i2c.md" target="_blank">Configuring Software I2C on the Raspberry Pi</a></p>
+    <p><strong>This Node should work for any working i2c device on non raspberry pi based systems! </strong></p><br/>
     <p><strong>Name:</strong><br/>
     Define the msg name if you wish to change the name displayed on the node.</p>
     <p><strong>Property:</strong><br/>
     Define the msg property name you wish. The name you select (msg.example) will be the output property.</p>
-
+    <p><strong>/dev/i2c-?</strong><br/>
+    The i2c Device # - Device number by default is set to 1. This is the number for most current raspberry pi's. i2c device numbers can range from 0 to 256.</p>
     <p><strong>Chipset:</strong><br/>
     The Chipset by default is set to 1115. The Chipset is the version of ads supported. If you have an ads1015 select that option</p>
-
     <p><strong>i2c Address:</strong><br/>
     The Address by default is set to 0x48. You can setup the ADS1X15 with one of four addresses, 0x48, 0x49, 0x4a, 0x4b. Please see ads1X15 documentation for more information.</p>
-
-    <p><strong>Channel:</strong><br/>
-    The Channel may be used for Single-ended measurements (A0-GND) or Differential measurements (A0-A1). Single-ended measurements measure voltages relative to a shared reference point which is almost always the main units ground. Differential measurements are “floating”, meaning that it has no reference to ground. The measurement is taken as the voltage difference between the two wires. Example: The voltage of a battery can be taken by connecting A0 to one terminal and A1 to the other</p>
-
+    <p><strong>Inputs:</strong><br/>
+    Inputs may be used for Single-ended measurements (A0-GND) or Differential measurements (A0-A1). Single-ended measurements measure voltages relative to a shared reference point which is almost always the main units ground. Differential measurements are “floating”, meaning that it has no reference to ground. The measurement is taken as the voltage difference between the two wires. Example: The voltage of a battery can be taken by connecting A0 to one terminal and A1 to the other</p>
     <p><strong>Samples/sec:</strong><br/>
     Select the sample per second you want your ADS to make. Higher rate equals more samples taken before being averaged and sent back from the ADS. Please see ads1X15 documentation for more information.</p>
-
     <p><strong>Gain:</strong><br/>
-    Select the Gain you want. To increase accuracy of smaller voltage signals, the gain can be adjusted to a lower range. Do NOT input voltages higher than the range or device max voltage, pi 3.3v use a voltage devider to lover input voltages as needed</p>
-
-    <p><strong>Error and warning msg's:</strong><br/>
-    <b>Treeing</b><br>This is supported but highly discouraged. A warning message will display when this method is used.<br>The ADS1X15 cannot process more than one task at a time. To support this a delay is added to each trigger and while loop is used to check when a slot is available. This adds overhead that is not needed if the user just daisy-chain the nodes and sets the msg.payload to a more appropriate name.<br><b>Dropped_Request</b>If you try to get more than one voltage reading in 100ms, from the same address, and channel, the node will drop the msg triggering the event.<br> To stop this error just lower the amount of trigger events your sending to the node.</p>
-
+    Select the Gain you want. To increase accuracy of smaller voltage signals, the gain can be adjusted to a lower range. Do NOT input voltages higher than the range or device max voltage, pi 3.3v use a voltage devider to lower input voltages as needed</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType("ads1x15-raspi", {
-        category: "Raspberry Pi",
+    RED.nodes.registerType("ads1x15_i2c", {
+        category: "i2c",
         defaults: {
             property: {value:"payload",required:true},
             name: {value:""},
-            chip: {value:"IC_ADS1115"},
-            i2c_address: {value:"ADDRESS_0x48"},
-            channel: {value:"CHANNEL_0"},
-            samplesPerSecond0: {value:"SPS_920"},
-            samplesPerSecond1: {value:"SPS_128"},
-            progGainAmp: {value:"PGA_4_096V"},
+            i2c_device_number: {value:1,validate:RED.validators.number()},
+            chip: {value:"0x01"},
+            i2c_address: {value:"0x48"},
+            inputsForChannel: {value:"singleEnded"},
+            singleEndedChannel0: {value: true},
+            singleEndedChannel1: {value: true},
+            singleEndedChannel2: {value: true},
+            singleEndedChannel3: {value: true},
+            differentialChannel0_1: {value: true},
+            differentialChannel0_3: {value: false},
+            differentialChannel1_3: {value: false},
+            differentialChannel2_3: {value: true},
+            samplesPerSecond0: {value:"920"},
+            samplesPerSecond1: {value:"128"},
+            progGainAmp: {value:"4096"},
         },
         color:"#FFCC66",
         inputs: 1,
         outputs: 1,
         icon: "ads1x15.png",
         label: function() {
-            return this.name || "ads1x15-raspi";
+            return this.name || "ads1x15_i2c";
         },
         labelStyle: function() {
             return this.name ? "node_label_italic" : "";
@@ -143,7 +173,7 @@
 
             $("#node-input-chip").change(function()
             {
-              if ($(this).val() == "IC_ADS1115")
+              if ($(this).val() == "0x01")
               {
                 $(".node-type-IC_ADS1015_selections").hide();
                 $(".node-type-IC_ADS1115_selections").show();
@@ -155,14 +185,27 @@
               }
             });
 
+            $("#node-input-inputsForChannel").change(function()
+            {
+              if ($(this).val() == "singleEnded")
+              {
+                $(".node-type-differentialSelections").hide();
+                $(".node-type-singleEndedChannelSelections").show();
+              }
+              else
+              {
+                $(".node-type-singleEndedChannelSelections").hide();
+                $(".node-type-differentialSelections").show();
+              }
+            });
 
-
-
-            this.samplesPerSecond1 = !this.samplesPerSecond1 ? "SPS_128" : this.samplesPerSecond1
-            this.samplesPerSecond0 = !this.samplesPerSecond0 ? "SPS_920" : this.samplesPerSecond0
-            this.i2c_address = !this.i2c_address ? "ADDRESS_0x48" : this.i2c_address;
-            this.channel = !this.channel ? "CHANNEL_0" : this.channel;
-            this.progGainAmp = !this.progGainAmp ? "PGA_4_096V" : this.progGainAmp;
+            this.i2c_device_number = !this.i2c_device_number ? 1 : this.i2c_device_number;
+            this.chip = !this.chip ? "0x01" : this.chip
+            this.inputsForChannel = !this.inputsForChannel ? "singleEnded" : this.inputsForChannel
+            this.samplesPerSecond1 = !this.samplesPerSecond1 ? "128" : this.samplesPerSecond1
+            this.samplesPerSecond0 = !this.samplesPerSecond0 ? "920" : this.samplesPerSecond0
+            this.i2c_address = !this.i2c_address ? "0x48" : this.i2c_address;
+            this.progGainAmp = !this.progGainAmp ? "4096" : this.progGainAmp;
 
         },
         oneditsave: function () {
