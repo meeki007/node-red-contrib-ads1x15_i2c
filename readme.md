@@ -106,6 +106,12 @@ Thanks to [Kevin Felix D Rodriguez Perez AKA felixdrp](https://github.com/felixd
 ## release notes ##
 0.0.0 = (majorchange) . (new_feature) . (bugfix-simple_mod)
 
+version 0.0.14
+<br>
+Update Documentation
+<br>
+<br>
+
 version 0.0.13
 <br>
 Update Documentation
